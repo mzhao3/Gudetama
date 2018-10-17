@@ -17,3 +17,8 @@ simonT -- 2018-10-17 00:14
 After receiving feedback from today's class, we made some edits
 1. We revised the arrows on the site map to link back to the home page for user functionality
 2. In the user table, permissions column was changed to admin (either Y or N)
+
+We read the 'programming sucks' article and decided on the following:
+1. Helpful comments so code can be more easily read
+2. Variable names that give insight into their purpose (not 'x')
+3. Report any problems run into to the rest of the team
