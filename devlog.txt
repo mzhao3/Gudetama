@@ -11,6 +11,7 @@ ______   ______   __   __   __       ______   _______
 susanL -- 2018-10-15 13:34
 --------------------------------------------------------------
 :: created devlog
+
 ==============================================================
 simonT -- 2018-10-17 00:14
 --------------------------------------------------------------
@@ -22,3 +23,7 @@ We read the 'programming sucks' article and decided on the following:
 1. Helpful comments so code can be more easily read
 2. Variable names that give insight into their purpose (not 'x')
 3. Report any problems run into to the rest of the team
+
+susanL -- 2018-10-17 14:02
+--------------------------------------------------------------
+:: as a team, we created a landing and db.py which creates the databases we have outline in our proposal 
