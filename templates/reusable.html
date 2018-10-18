@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>
+    {% block title %}
+    Gudetama
+    {% endblock %}
+  </title>
+</head>
+<body>
+  {% block greeting %}
+    Welcome {{ user }}!
+  {% endblock %}
+  {%block content%}
+
+  {% endblock %}
+  {% block form1 %}
+  <form action= "/auth" method="GET">
+    Username: <input type = "text" name = "Username"><br>
+    Password: <input type = "text" name = "Password"><br>
+    <input type = "submit" value="Login">
+    </form>
+  {% endblock %}
+  {% block footer %}
+  {% endblock %}
+
+</body>
+</html>

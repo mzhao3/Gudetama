@@ -1,4 +1,12 @@
-______   ______   __   __   __       ______   _______
+Gudetama
+Susan Lin
+Cheryl Qian
+Derek Song
+Simon Tsui
+pd8
+---------------------
+Da Art of Storytellin'
+
 /_____/\ /_____/\ /_/\ /_/\ /_/\     /_____/\ /______/\
 \:::_ \ \\::::_\/_\:\ \\ \ \\:\ \    \:::_ \ \\::::__\/__
 \:\ \ \ \\:\/___/\\:\ \\ \ \\:\ \    \:\ \ \ \\:\ /____/\
@@ -23,7 +31,7 @@ We read the 'programming sucks' article and decided on the following:
 1. Helpful comments so code can be more easily read
 2. Variable names that give insight into their purpose (not 'x')
 3. Report any problems run into to the rest of the team
-
+==============================================================
 susanL -- 2018-10-17 14:02
 --------------------------------------------------------------
-:: as a team, we created a landing and db.py which creates the databases we have outline in our proposal 
+:: as a team, we created a landing and db.py which creates the databases we have outline in our proposal
