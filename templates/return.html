@@ -1,3 +1,5 @@
+{% extends "base.html" %}
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -6,5 +8,15 @@
   <body>
     <br>
     welcome back {{ user }}!
+
+    <br>
+     you're currently logged in
+    <br>
+
+    <form action="/" name="main" method="POST">
+                        <button name="enter" type="submit">
+                        LOG OUT
+                        </button>
+    </form>
   </body>
 </html>

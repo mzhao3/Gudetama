@@ -1,3 +1,5 @@
+{% extends "base.html" %}
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -5,15 +7,23 @@
     <title> LOG IN </title>
   </head>
   <body>
-    <br>
-    enter your username:
-    <br>
-    <form action="/auth" name="main" method="GET" placeholder="username">
-			<input type="text" name="user">
-    <br> enter your password: <br>
-    <form action="/auth" name="main" method="GET" placeholder="password">
-    		<input type="text" name="pass">
-		<button name="enter:" type="submit"> Submit </button>
+    {% block error %}
+        {% if error %}
+            {% set msgs = get_flashed_messages() %}
+            {{ msgs[0] }}
+        {% endif %}
+    {% endblock %}
+
+    {% block content %}
+    <form action="/auth" name="main" method="GET" placeholder="Username">
+      <input type="text" name="user" placeholder = 'username'>
+      <br>
+      <input type="text" name="pass" placeholder = 'password'>
+      <br>
+      <button name="enter:" type="submit">
+      Submit
+      </button>
     </form>
+    {% endblock %}
   </body>
 </html>
