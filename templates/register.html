@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>
+    {% block title %}
+    Register
+    {% endblock %}
+  </title>
+</head>
+<body>
+  {% block greeting %}
+    Make an Account
+  {% endblock %}
+  {%block content%}
+
+  {% endblock %}
+  {% block form1 %}
+  <form action= "/auth" method="GET">
+    Enter your Username: <input type = "text" name = "Username"><br>
+    Enter your Password: <input type = "text" name = "Password"><br>
+    Enter your Blog name: <input type = "text" name = "Blog"><br>
+    <input type = "submit" value="Register">
+    </form>
+  {% endblock %}
+  {% block footer %}
+  {% endblock %}
+
+</body>
+</html>

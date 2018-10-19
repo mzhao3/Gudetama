@@ -19,6 +19,7 @@ def getBlog(user):
 def register(user, blog, pw, permission):
     c.execute("INSERT INTO userDirectory VALUES('{0}','{1}', '{2}','{3}')".format(user,blog,pw,permission))
 
+
 register('Susan','sblog','pass','read')
 print getPw('Susan')
 print getBlog('Susan')

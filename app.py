@@ -1,11 +1,11 @@
-# Team Gudemata : Derek Song, Susan Lin, Cheryl Qian, and Simon Tsui (PM)
+# Team Gudetama : Derek Song, Susan Lin, Cheryl Qian, and Simon Tsui (PM)
 # SoftDev pd8
 # P #00 Da Art of Storytellin'
 # 2018-10-23
 
 from flask import Flask, render_template, request, session, redirect, url_for, flash
 from os import urandom
-import db
+#import db
 
 app = Flask(__name__)
 
@@ -36,6 +36,11 @@ def login():
     elif users[request.args['user']] != request.args['pass']:
         flash("password incorrect")
         return render_template('form.html', error=True)
+
+# Register route
+@app.route('/register', methods = ["POST", "GET"])
+def register():
+    return render_template('register.html', error=True)
 
 # logout route, sends user back to home root and forgets current user
 @app.route("/logout", methods=["POST", "GET"])
