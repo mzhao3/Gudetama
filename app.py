@@ -14,7 +14,7 @@ app.secret_key = urandom(32)
 #home root
 @app.route('/', methods=["POST", "GET"])
 def home():
-     if 'slin15' in session:
+     if request.args['user'] in session:
           return ('return.html')
      return render_template('form.html')
 
@@ -38,11 +38,11 @@ def login():
 @app.route('/auth2', methods=["POST", "GET"])
 def makeAcc():
     if db.isUser(request.args["Username"]):
-        flash("username not found")
+        flash("user already exists")
         return render_template('register.html', error=True)
     elif db.isUser(request.args["Username"]) == False:
         db.register(request.args['Username'], request.args['Blog'], request.args['Password'], "Read")
-        return redirect(url_for('home'))
+        return redirect(url_for('/login'))
 
 
 # Register route
@@ -53,7 +53,7 @@ def register():
 # logout route, sends user back to home root and forgets current user
 @app.route("/logout", methods=["POST", "GET"])
 def logout():
-    session.pop['slin15']
+    session.pop(request.args['user'])
     return redirect(url_for('home'))
 
 if __name__ == "__main__":

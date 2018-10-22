@@ -7,55 +7,71 @@ DB_FILE="gudetama.db"
 db = sqlite3.connect(DB_FILE, check_same_thread=False) #open if file exists, otherwise create
 
 def create():
+    db = sqlite3.connect(DB_FILE, check_same_thread=False)
     c = db.cursor()
     c.execute("CREATE TABLE IF NOT EXISTS userDirectory(username TEXT, blogName TEXT, password TEXT, permissions TEXT)")
+    db.commit()
+    db.close()
 
 def isUser(user):
+    db = sqlite3.connect(DB_FILE, check_same_thread=False)
     c = db.cursor()
     c.execute("SELECT username FROM userDirectory WHERE username = '{0}'".format(user))
-    name = c.fetchone()[0]
-    if name != None and name == user:
+    name = c.fetchone()#[0]
+    db.commit()
+    db.close()
+    if name == user:
         return True
     return False
-    db.commit()
-    db.close()
+
 
 def getPw(user):
+    db = sqlite3.connect(DB_FILE, check_same_thread=False)
     c = db.cursor()
     c.execute("SELECT password FROM userDirectory WHERE username = '{0}'".format(user))
-    return c.fetchone()
+    x = c.fetchone()
     db.commit()
     db.close()
+    return x
+
 
 
 def resetPw(user, newPass):
+    db = sqlite3.connect(DB_FILE, check_same_thread=False)
     c = db.cursor()
     c.execute("UPDATE userDirectory SET password = newPass WHERE username = '{0}'".format(user))
     db.commit()
     db.close()
 
 def getBlog(user):
+    db = sqlite3.connect(DB_FILE, check_same_thread=False)
     c = db.cursor()
     c.execute("SELECT blogName FROM userDirectory WHERE username = '{0}'".format(user))
+    x = c.fetchone() 
     db.commit()
     db.close()
-    return c.fetchone()
+    return x
 
 def getBlogTitle(user):
+    db = sqlite3.connect(DB_FILE, check_same_thread=False)
     c = db.cursor()
     c.execute("SELECT title FROM '{0}' WHERE username = '{1}'".format(getBlog(user), user))
+    x = c.fetchone() 
     db.commit()
     db.close()
-    return c.fetchone()
+    return x
 
 def getBlogBody(user):
+    db = sqlite3.connect(DB_FILE, check_same_thread=False)
     c = db.cursor()
     c.execute("SELECT body FROM '{0}' WHERE username = '{1}'".format(getBlog(user), user))
+    x = c.fetchone() 
     db.commit()
     db.close()
-    return c.fetchone()
+    return x
 
 def register(user, blog, pw, permission):
+    db = sqlite3.connect(DB_FILE, check_same_thread=False)
     c = db.cursor()
     c.execute("INSERT INTO userDirectory VALUES('{0}','{1}', '{2}','{3}')".format(user,blog,pw,permission))
     # inputs username, blog name, password, and permission status into the user Directory database
