@@ -3,10 +3,10 @@
 Welcome to Gudetama! We are a user-submitted blog site.
 
 Dependencies:
-Python3
-a virtual environment
+- Python3
+- a virtual environment
  - python3 -m venv <NAME>
-flask
+-flask
  - pip install flask
  - pip install wheel
 
