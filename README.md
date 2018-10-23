@@ -1,11 +1,16 @@
-# Gudetama
+# Gudetama - Susan Lin, Cheryl Qian, Derek Song, Simon Tsui(PM)
 
 Welcome to Gudetama! We are a user-submitted blog site.
 
 Dependencies:
-- Python3
-- a virtual environment (to install: python3 -m venv <NAME>)
-- flask (to install: pip install flask & pip install wheel)
+1. We are using **Python3**
+2. a virtual environment
+   - to install: "python3 -m venv <NAME>"
+3. flask 
+   - Launch the virtual enviornment using ". path/<venv name>/bin/activate"
+   - Installing modules flask and wheel:
+   - pip install flask
+   - pip install wheel
 
 Launching the Website:
 1. Start up your virtual enviornment by using the command . path/<venv name>/bin/activate
