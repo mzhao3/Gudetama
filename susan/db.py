@@ -20,7 +20,7 @@ def isUser(user):
     name = c.fetchone()
     db.commit()
     db.close()
-    if len(name) > 0:
+    if name != None and len(name) > 0:
         return True
     return False
 
