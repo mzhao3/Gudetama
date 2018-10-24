@@ -17,7 +17,7 @@ def login():
     if(session["user"] in hard_login and session['pswd'] == hard_login[session["user"]]):
         return render_template("logged.html", user = session["user"]);
     elif(session["user"] not in hard_login):
-        flash ("Username not founds")
+        flash ("Username not found")
         return render_template("register.html")
     else:
         flash ("username or password is invalid")
@@ -27,6 +27,7 @@ def login():
 def createAcct():
     #code for making account here
     db.register(request.args['username'], request.args['blog'], request.args['password'], "Y")
+    flash("Account created")
     return render_template("home.html")
 
 # @app.route("/premake")

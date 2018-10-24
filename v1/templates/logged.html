@@ -5,5 +5,12 @@
 </head>
 <body>
   Welcome back {{ user }}
+  {% block content %}
+  <form action= "/addBlog" method="GET">
+    <input type = "radio" name = "editMethod" value = "change"> Add/Edit Blog <br>
+    <input type = "radio" name = "editMethod" value = "remove"> Remove Blog <br>
+    <input type = "submit" value = "Go">
+    </form>
+  {% endblock %}
 </body>
 </html>
