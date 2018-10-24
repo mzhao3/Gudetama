@@ -8,6 +8,11 @@
   </head>
   <body>
     {% block error %}
+    {% set msgs = get_flashed_messages() %}
+    {% for each in msgs %}
+      {{ each }}
+      <br>
+    {% endfor %}
     {% endblock %}
 
     {% block content %}
