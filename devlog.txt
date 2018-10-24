@@ -39,4 +39,17 @@ susanL -- 2018-10-17 14:02
 cherylQ -- 2018-10-18 13:30
 --------------------------------------------------------------
 :: We added set and get methods to db.py, worked on substitute components for testing, and implementing login/logout function in home page
+==============================================================
+susanL -- 2018-10-20 18:02
+--------------------------------------------------------------
+:: wrote major functions in db.py
+:: wrote the authorization and linkage between pages 
+==============================================================
+susanL -- 2018-10-23 19:07
+--------------------------------------------------------------
+:: debugged db.py and app.py
+:: login now functional
+:: reformatted form.html to render register.html useless
+:: deleted unnecessary templates i.e. landing.html, reusable.html, register.html 
+==============================================================
 
