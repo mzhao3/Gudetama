@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>
+    {% block title %}
+    Create Blog
+    {% endblock %}
+  </title>
+</head>
+<body>
+  {% block greeting %}
+    Create a new blog below!
+  {% endblock %}
+  
+  {%block content%}
+   {% endblock %}
+  {% block form1 %}
+  <form action= "/" method="GET">
+    Blog Name: <input type = "text" name = "BlogName"> <br>
+    Blog Entry: <br> <textarea rows = "4" cols = "50"></textarea>
+    <br>
+    
+    <input type = "submit" value="Submit">
+    </form>
+  {% endblock %}
+  {% block footer %}
+  {% endblock %}
+
+</body>
+</html>
