@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    WELCOME TO GUDETAMA, YOUR FRIENDLY NEIGHBORHOOD BLOG SITE.
+    <title> LOG IN </title>
+  </head>
+  <body>
+    {% block error %}
+    {% endblock %}
+
+    {% block content %}
+    <br>
+    <br>
+    <br>
+    <b>LOGIN</b>
+    <br>
+    <br>
+
+    <form action="/auth" name="main" method="GET" placeholder="Username">
+      <input type="text" name="username" placeholder = 'username'>
+      <br>
+      <input type="text" name="password" placeholder = 'password'>
+      <br>
+      <br>
+      <button name="enter:" type="submit">
+      Submit
+      </button>
+    </form>
+
+    <br>
+    <br>
+    <br>
+
+    <br>
+    <br>
+    <!-- <a href = "register.html"> make account </a>  Link doesn't work...  -->
+    <!-- <form action = "/premake" method = "GET">
+    <button name = "enter:" type = "Submit">
+      Don't have an account? Click here!
+    </button>
+    </form> -->
+
+    {% endblock %}
+  </body>
+</html>

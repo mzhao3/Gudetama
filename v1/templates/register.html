@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+  {% block error %}
+  {% set msgs = get_flashed_messages() %}
+  {% for each in msgs %}
+    {{ each }}
+    <br>
+  {% endfor %}
+  {% endblock %}
+  {% block content %}
+  <form action= "/maker" method="GET">
+    <input type = "text" name = "username" placeholder = 'Username'><br>
+    <input type = "text" name = "password" placeholder = 'password'><br>
+    <input type = "text" name = "blog" placeholder = 'blog title'><br>
+    <br>
+    <input type = "submit" value="Register">
+  </form>
+  {% endblock %}
+</body>
+</html>
