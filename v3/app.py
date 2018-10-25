@@ -16,7 +16,8 @@ app.secret_key = urandom(32)
 @app.route('/', methods=["POST", "GET"])
 def home():
      if 'user' in session:
-          return render_template('return.html')
+          return render_template('return.html', newTitle = db.getBlogTitle(session['user']),
+                                     newBlog = db.getBlogBody(session['user']))
      return render_template('form.html')
 
 #reading in user and password, checking to see if it is valid or not
@@ -54,18 +55,10 @@ def register():
         db.register(username, blog, password, "RW")
         return render_template('form.html')
 
-@app.route("/create", methods=["POST", "GET"])
+@app.route("/createBlog", methods=["POST", "GET"])
 def create():
-    blogTitle = request.args['blogName']
-    blogContent = request.args['blogText']
-
-    if blogTitle == "":
-        flash('you need a title!')
-        return render_template("return.html", error=True)
-    else:
-        db.addBlog(session['user'], blogTitle, blogContent)
-        return render_template("return.html")
-
+    return render_template('createBlog.html')
+    
 @app.route("/edit", methods=["POST", "GET"])
 def edit():    
     return render_template("return.html")
