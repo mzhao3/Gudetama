@@ -49,10 +49,26 @@ def register():
     if db.isUser(username):
         flash("user already exists")
         return render_template('form.html', error=True)
-     
+
     elif db.isUser(username) == False:
-        db.register(username, blog, password, "Read")
+        db.register(username, blog, password, "RW")
         return render_template('form.html')
+
+@app.route("/create", methods=["POST", "GET"])
+def create():
+    blogTitle = request.args['blogName']
+    blogContent = request.args['blogText']
+
+    if blogTitle = "":
+        flash('you need a title!')
+        return render_template("return.html", error=True)
+    else:
+        db.addBlog(session['user'], blogTitle, blogContent)
+        return render_template("return.html")
+
+@app.route("/edit", methods=["POST", "GET"])
+def edit():    
+    return render_template("return.html")
 
 # logout route, sends user back to home root and forgets current user
 @app.route("/logout", methods=["POST", "GET"])

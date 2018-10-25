@@ -9,7 +9,7 @@ DB_FILE="gudetama.db"
 db = sqlite3.connect(DB_FILE, check_same_thread=False) #open if file exists, otherwise create
 c = db.cursor()
 c.execute("CREATE TABLE IF NOT EXISTS userDirectory(username TEXT, blogName TEXT, password TEXT, permissions TEXT)")
-c.execute("INSERT INTO userDirectory VALUES('admin','admin','admin','all')")
+c.execute("INSERT INTO userDirectory VALUES('admin','admin','admin','A')")
 db.commit()
 db.close()
 
@@ -69,13 +69,28 @@ def getBlogBody(user):
     db.close()
     return x
 
+def updateBlog(user, Title, entry):
+    db = sqlite3.connect(DB_FILE, check_same_thread=False)
+    c = db.cursor()
+    c.execute("UPDATE '{0}' SET body = entry WHERE username = '{1}', title = Title".format(user, user))
+    c.execute("INSERT INTO '{0}' (title, editedVersion, timeB) VALUES ('{1}', '{2}', '{3}')".format(user+'History', Title, entry, datetime.utcnow()))
+    db.commit()
+    db.close()
+
+def addBlog(user, Title, entry):
+    db = sqlite3.connect(DB_FILE, check_same_thread=False)
+    c = db.cursor()
+    c.execute("INSERT INTO '{0}' (title, body, timeB) VALUES ('{1}', '{2}', '{3}')".format(user, Title, entry, datetime.utcnow()))
+    db.commit()
+    db.close()
+
 def register(user, blog, pw, permission):
     db = sqlite3.connect(DB_FILE, check_same_thread=False)
     c = db.cursor()
 
     c.execute("CREATE TABLE IF NOT EXISTS '{0}' (username TEXT, title TEXT, body TEXT, timeB TEXT)".format(blog))
     # creates the user's blog specific database which holds the date of entry, username, title of entry, and content
-    c.execute("CREATE TABLE IF NOT EXISTS '{0}' (username TEXT, editedVersion TEXT, title TEXT, timeB TEXT)".format(blog+"History"))
+    c.execute("CREATE TABLE IF NOT EXISTS '{0}' (username TEXT, title TEXT, editedVersion TEXT, timeB TEXT)".format(blog+"History"))
     # creates the user's blog edit history specific database which holds the username, content of edited version, title of entry, and date of edit
     c.execute("INSERT INTO userDirectory VALUES('{0}','{1}', '{2}','{3}')".format(user,blog,pw,permission))
     # inputs username, blog name, password, and permission status into the user Directory database
