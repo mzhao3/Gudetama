@@ -59,3 +59,8 @@ SimonT -- 2018-10-24 2:01
 :: instantiated createBlog.html
 :: Updated README.md to include launch instructions
 ==============================================================
+susanL -- 2018-10-25 13:39
+--------------------------------------------------------------
+:: had team meeting about roles + current progress + updated team on db.py functionality
+:: working on createBlog functionality + formatting
+==============================================================
