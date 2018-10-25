@@ -1,10 +1,10 @@
-# Gudetama - Susan Lin, Cheryl Qian, Derek Song, Simon Tsui(PM)
+# GUDETAMA - Susan Lin, Cheryl Qian, Derek Song, Simon Tsui(PM)
 Welcome to Gudetama! We are a user-submitted blog site.
 Dependencies:
 1. We are using **Python3**
 2. a virtual environment
    - to install: "python3 -m venv <NAME>"
-3. flask 
+3. flask
    - Launch the virtual enviornment using ". path/<venv name>/bin/activate"
    - Installing modules flask and wheel:
    - pip install flask
