@@ -49,7 +49,7 @@ def getBlog(user):
     x = c.fetchone()
     db.commit()
     db.close()
-    return x
+    return x[0]
 
 def getBlogTitle(user):
     db = sqlite3.connect(DB_FILE, check_same_thread=False)
@@ -58,7 +58,7 @@ def getBlogTitle(user):
     x = c.fetchone()
     db.commit()
     db.close()
-    return x
+    return x[0]
 
 def getBlogBody(user):
     db = sqlite3.connect(DB_FILE, check_same_thread=False)
@@ -67,7 +67,7 @@ def getBlogBody(user):
     x = c.fetchone()
     db.commit()
     db.close()
-    return x
+    return x[0]
 
 def updateBlog(user, Title, entry):
     db = sqlite3.connect(DB_FILE, check_same_thread=False)
@@ -107,3 +107,20 @@ def register(user, blog, pw, permission):
 #print getBlog('Susan')
 #resetPw ('Susan', 'word')
 #print getPw('Susan')
+
+def clear(user):
+    db = sqlite3.connect(DB_FILE, check_same_thread=False)
+    c = db.cursor()
+    c.execute("DELETE FROM userDirectory WHERE username = '{0}'".format(user))
+    c.execute("DELETE FROM {0} WHERE username = '{1}'".format(getBlog(user), user))
+    c.execute("DELETE FROM {0} WHERE username = '{1}'".format(getBlog(user)+"History", user))
+    db.commit()
+    db.close()
+
+def testing():
+    clear('admin')
+    register("admin", "bloggy", "hello", "RW")
+    print (isUser("admin"))
+    print (getPw("admin"))
+
+testing()
