@@ -17,28 +17,23 @@
 
     <br>
     <br>
-     you're currently logged in
+    you're currently logged in
     <br>
     <br>
 
-    <form action= "/create" method="GET">
-      <input type = "text" name = "blogName" placeholder='blog title'> <br>
-      <textarea rows = "4" cols = "50" name="blogText">
-      </textarea>
-      <br>
+    Create a blog <a href="/createBlog">here</a>
 
-      <input type = "submit" value="Submit">
-      </form>
-
-      <br>
-      <br>
-      <br>
-      <br>
-
+    <br>
+    <br>
+    <br>
+    <br>
+    
+    {{ newblog }}
+    
     <form action="/logout" name="main" method="POST">
-                        <button name="enter" type="submit">
-                        LOG OUT
-                        </button>
+      <button name="enter" type="submit">
+        LOG OUT
+      </button>
     </form>
   </body>
 </html>

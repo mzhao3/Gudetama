@@ -59,7 +59,7 @@ def create():
     blogTitle = request.args['blogName']
     blogContent = request.args['blogText']
 
-    if blogTitle = "":
+    if blogTitle == "":
         flash('you need a title!')
         return render_template("return.html", error=True)
     else:
