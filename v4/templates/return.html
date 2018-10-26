@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> HOME </title>
+  </head>
+  <body>
+
+    {% block error %}
+    {% if error %}
+    {% set msgs = get_flashed_messages() %}
+    {{ msgs[0] }}
+    {% endif %}
+    {% endblock %}
+
+    <br>
+    welcome back <b>{{ user }}</b>!
+
+    <br>
+    <br>
+    you're currently logged in
+    <br>
+    <br>
+
+    Create an entry <a href="/createBlog">here</a>
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+    {% for n in range(entries|length) %}
+
+        {{titles[n]}}
+        <br>
+        {{ entries[n] }}
+        <br>
+        <br>
+
+    {% endfor %}
+
+    <form action="/logout" name="main" method="POST">
+      <button name="enter" type="submit">
+        LOG OUT
+      </button>
+    </form>
+  </body>
+</html>
