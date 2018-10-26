@@ -17,8 +17,13 @@ session = {}
 @app.route('/', methods=["POST", "GET"])
 def home():
      if 'user' in session:
-          return render_template('return.html', titles = db.getEntryTitle(session['user']),
-                                     entries = db.getEntryBody(session['user']))
+         titles = db.getEntryTitle(session['user'])
+         entries = db.getEntryBody(session['user'])
+
+         titles=[x[0] for x in titles if x[0] != "CREATED"]
+         entries=[x[0] for x in entries if x[0] != "CREATED"]
+
+         return render_template('return.html', titles = titles, entries = entries)
      return render_template('form.html')
 
 #reading in user and password, checking to see if it is valid or not
@@ -67,9 +72,9 @@ def create():
      entry = request.args['entryText']
      db.addEntry(session['user'],title,entry)
      return redirect('/')
-    
+
 @app.route("/edit", methods=["POST", "GET"])
-def edit():    
+def edit():
     return render_template("return.html")
 
 # logout route, sends user back to home root and forgets current user

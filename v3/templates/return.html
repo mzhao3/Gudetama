@@ -28,23 +28,16 @@
     <br>
     <br>
 
-    {{ entries }}
-    {{ titles }}
+    {% for n in range(entries|length) %}
 
-    {% for title in titles %}
-    {{ title }}
-    <br>
-    
-    {% for entry in entries %}
-
-    {% if loop.index == 1 %}
-    {{ entry }}
-    {% endif %}
+        {{titles[n]}}
+        <br>
+        {{ entries[n] }}
+        <br>
+        <br>
 
     {% endfor %}
-    
-    {% endfor %}
-    
+
     <form action="/logout" name="main" method="POST">
       <button name="enter" type="submit">
         LOG OUT
