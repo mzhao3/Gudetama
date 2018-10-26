@@ -11,13 +11,14 @@ import db
 
 app = Flask(__name__)
 app.secret_key = urandom(32)
+session = {}
 
 #home root
 @app.route('/', methods=["POST", "GET"])
 def home():
      if 'user' in session:
-          return render_template('return.html', newTitle = db.getBlogTitle(session['user']),
-                                     newBlog = db.getBlogBody(session['user']))
+          return render_template('return.html', titles = db.getEntryTitle(session['user']),
+                                     entries = db.getEntryBody(session['user']))
      return render_template('form.html')
 
 #reading in user and password, checking to see if it is valid or not
@@ -53,11 +54,19 @@ def register():
 
     elif db.isUser(username) == False:
         db.register(username, blog, password, "RW")
-        return render_template('form.html')
+        flash("Account successfully created")
+        return render_template('form.html', success=True)
 
 @app.route("/createBlog", methods=["POST", "GET"])
-def create():
+def createBlog():
     return render_template('createBlog.html')
+
+@app.route("/create", methods=["POST","GET"])
+def create():
+     title = request.args['entryTitle']
+     entry = request.args['entryText']
+     db.addEntry(session['user'],title,entry)
+     return redirect('/')
     
 @app.route("/edit", methods=["POST", "GET"])
 def edit():    
@@ -66,8 +75,8 @@ def edit():
 # logout route, sends user back to home root and forgets current user
 @app.route("/logout", methods=["POST", "GET"])
 def logout():
-    session.pop('user')
-    return redirect(url_for('home'))
+     session.pop('user')
+     return redirect(url_for('home'))
 
 if __name__ == "__main__":
     app.debug = True

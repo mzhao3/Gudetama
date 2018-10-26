@@ -42,7 +42,7 @@ def resetPw(user, newPass):
     db.commit()
     db.close()
 
-def getBlog(user):
+def getBlogName(user):
     db = sqlite3.connect(DB_FILE, check_same_thread=False)
     c = db.cursor()
     c.execute("SELECT blogName FROM userDirectory WHERE username = '{0}'".format(user))
@@ -51,25 +51,25 @@ def getBlog(user):
     db.close()
     return x[0]
 
-def getBlogTitle(user):
+def getEntryTitle(user):
     db = sqlite3.connect(DB_FILE, check_same_thread=False)
     c = db.cursor()
-    c.execute("SELECT title FROM '{0}' WHERE username = '{1}'".format(getBlog(user), user))
+    c.execute("SELECT title FROM '{0}'".format(user))
     x = c.fetchone()
     db.commit()
     db.close()
-    return x[0]
+    return x
 
-def getBlogBody(user):
+def getEntryBody(user):
     db = sqlite3.connect(DB_FILE, check_same_thread=False)
     c = db.cursor()
-    c.execute("SELECT body FROM '{0}' WHERE username = '{1}'".format(getBlog(user), user))
+    c.execute("SELECT body FROM '{0}'".format(user))
     x = c.fetchone()
     db.commit()
     db.close()
-    return x[0]
+    return x
 
-def updateBlog(user, Title, entry):
+def updateEntry(user, Title, entry):
     db = sqlite3.connect(DB_FILE, check_same_thread=False)
     c = db.cursor()
     c.execute("UPDATE '{0}' SET body = entry WHERE username = '{1}', title = Title".format(user, user))
@@ -77,10 +77,10 @@ def updateBlog(user, Title, entry):
     db.commit()
     db.close()
 
-def addBlog(user, Title, entry):
+def addEntry(user, Title, entry):
     db = sqlite3.connect(DB_FILE, check_same_thread=False)
     c = db.cursor()
-    c.execute("INSERT INTO '{0}' (title, body, timeB) VALUES ('{1}', '{2}', '{3}')".format(user, Title, entry, datetime.utcnow()))
+    c.execute("INSERT INTO '{0}' VALUES ('{1}', '{2}', '{3}')".format(user, Title, entry, datetime.utcnow()))
     db.commit()
     db.close()
 
@@ -88,25 +88,30 @@ def register(user, blog, pw, permission):
     db = sqlite3.connect(DB_FILE, check_same_thread=False)
     c = db.cursor()
 
-    c.execute("CREATE TABLE IF NOT EXISTS '{0}' (username TEXT, title TEXT, body TEXT, timeB TEXT)".format(blog))
+    c.execute("CREATE TABLE IF NOT EXISTS '{0}' (title TEXT, body TEXT, timeB TEXT)".format(user))
     # creates the user's blog specific database which holds the date of entry, username, title of entry, and content
-    c.execute("CREATE TABLE IF NOT EXISTS '{0}' (username TEXT, title TEXT, editedVersion TEXT, timeB TEXT)".format(blog+"History"))
+    
+    c.execute("CREATE TABLE IF NOT EXISTS '{0}' (title TEXT, editedVersion TEXT, timeB TEXT)".format(user+"History"))
     # creates the user's blog edit history specific database which holds the username, content of edited version, title of entry, and date of edit
+    
     c.execute("INSERT INTO userDirectory VALUES('{0}','{1}', '{2}','{3}')".format(user,blog,pw,permission))
     # inputs username, blog name, password, and permission status into the user Directory database
-    c.execute("INSERT INTO '{0}' VALUES ('{1}', '{2}', '{3}', '{4}')".format(blog, user, "CREATED", "CREATED", datetime.utcnow()))
+    
+    c.execute("INSERT INTO '{0}' VALUES ('{1}', '{2}', '{3}')".format(user, "CREATED", "CREATED", datetime.utcnow()))
     # first entry of blogName: time is utc standard unless we have time to make user specifc; inserts all information given by user into fields
-    c.execute("INSERT INTO '{0}' VALUES ('{1}', '{2}', '{3}', '{4}')".format(blog+"History", user, "CREATED", "CREATED", datetime.utcnow()))
+    
+    c.execute("INSERT INTO '{0}' VALUES ('{1}', '{2}', '{3}')".format(user+"History", "CREATED", "CREATED", datetime.utcnow()))
     # first entry of blogNameHistory: time is is utc standard unless we have time to make user specifc; inserts all information given by user into fields
 
     db.commit()
     db.close()
 
-#register('Susan','sblog','pass','read')
-##print getPw('Susan')
-#print getBlog('Susan')
-#resetPw ('Susan', 'word')
-#print getPw('Susan')
+register('Susan','sblog','pass','read')
+addEntry('Susan','title','body')
+addEntry('Susan','t','b')
+print(getEntryTitle('Susan'))
+print(getEntryBody('Susan'))
+
 
 def clear(user):
     db = sqlite3.connect(DB_FILE, check_same_thread=False)
@@ -117,10 +122,6 @@ def clear(user):
     db.commit()
     db.close()
 
-def testing():
-    clear('admin')
-    register("admin", "bloggy", "hello", "RW")
-    print (isUser("admin"))
-    print (getPw("admin"))
 
-testing()
+
+

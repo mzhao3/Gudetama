@@ -6,10 +6,10 @@
   <body>
 
     {% block error %}
-        {% if error %}
-            {% set msgs = get_flashed_messages() %}
-            {{ msgs[0] }}
-        {% endif %}
+    {% if error %}
+    {% set msgs = get_flashed_messages() %}
+    {{ msgs[0] }}
+    {% endif %}
     {% endblock %}
 
     <br>
@@ -21,15 +21,29 @@
     <br>
     <br>
 
-    Create a blog <a href="/createBlog">here</a>
+    Create an entry <a href="/createBlog">here</a>
 
     <br>
     <br>
     <br>
     <br>
+
+    {{ entries }}
+    {{ titles }}
+
+    {% for title in titles %}
+    {{ title }}
+    <br>
     
-    <b>{{ newTitle }}</b>
-    {{ newBlog }}
+    {% for entry in entries %}
+
+    {% if loop.index == 1 %}
+    {{ entry }}
+    {% endif %}
+
+    {% endfor %}
+    
+    {% endfor %}
     
     <form action="/logout" name="main" method="POST">
       <button name="enter" type="submit">

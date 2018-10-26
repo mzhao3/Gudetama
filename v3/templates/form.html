@@ -9,10 +9,20 @@
   <body>
     {% block error %}
         {% if error %}
-            {% set msgs = get_flashed_messages() %}
-            {{ msgs[0] }}
+            <font color="red">{% set msgs = get_flashed_messages() %}
+              {{ msgs[0] }}
+	      </font>
         {% endif %}
     {% endblock %}
+      
+    {% block success %}
+        {% if success %}
+            <font color="green">{% set msgs = get_flashed_messages() %}
+              {{ msgs[0] }}
+	      </font>
+        {% endif %}
+    {% endblock %}
+   
 
     {% block content %}
     <br>
