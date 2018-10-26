@@ -5,6 +5,15 @@
   </head>
   <body>
 
+    <form action="/search" name="main" method="GET" placeholder="Username">
+      <input type="text" name="user" placeholder = 'username'>
+      <button name="enter:" type="submit">
+      Submit
+      </button>
+    </form>
+
+    <br> <br>
+
     {% block error %}
     {% if error %}
     {% set msgs = get_flashed_messages() %}
@@ -30,11 +39,11 @@
 
     {% for n in range(entries|length) %}
 
-        {{titles[n]}}
+        {{ dates[n] }} <br>
+        <u><b> {{ titles[n] }} </b></u> 
         <br>
         {{ entries[n] }}
-        <br>
-        <br>
+        <br><br>
 
     {% endfor %}
 

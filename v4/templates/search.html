@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> SEARCH RESULTS </title>
+  </head>
+  <body>
+
+    <b>THIS IS THE BLOG OF {{ user }}</b>
+
+    <br> <br>
+
+    {% for n in range(entries|length) %}
+
+        <u> <b> {{ titles[n] }} </b> </u> 
+        <br>
+        {{ entries[n] }}
+        <br> <br>
+
+    {% endfor %}
+
+    <br> <br>
+    return home <a href="/">here</a>
+    <br> <br>
+    <form action="/logout" name="main" method="POST">
+      <button name="enter" type="submit">
+        LOG OUT
+      </button>
+    </form>
+
+  </body>
+</html>

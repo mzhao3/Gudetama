@@ -19,11 +19,13 @@ def home():
      if 'user' in session:
          titles = db.getEntryTitle(session['user'])
          entries = db.getEntryBody(session['user'])
+         dates = db.getEntryDate(session['user'])
 
          titles=[x[0] for x in titles if x[0] != "CREATED"]
          entries=[x[0] for x in entries if x[0] != "CREATED"]
+         dates=[x[0] for x in dates]
 
-         return render_template('return.html', titles = titles, entries = entries)
+         return render_template('return.html', user=session['user'], titles = titles, entries = entries, dates = dates)
      return render_template('form.html')
 
 #reading in user and password, checking to see if it is valid or not
@@ -70,12 +72,24 @@ def createBlog():
 def create():
      title = request.args['entryTitle']
      entry = request.args['entryText']
+
      db.addEntry(session['user'],title,entry)
      return redirect('/')
 
 @app.route("/edit", methods=["POST", "GET"])
 def edit():
-    return render_template("return.html")
+    return render_template("edit.html")
+
+@app.route("/search", methods=["POST", "GET"])
+def search():
+    user = request.args['user']
+    titles = db.getEntryTitle(user)
+    entries = db.getEntryBody(user)
+
+    titles=[x[0] for x in titles if x[0] != "CREATED"]
+    entries=[x[0] for x in entries if x[0] != "CREATED"]
+
+    return render_template("search.html", user=user, titles=titles, entries=entries)
 
 # logout route, sends user back to home root and forgets current user
 @app.route("/logout", methods=["POST", "GET"])

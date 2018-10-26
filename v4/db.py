@@ -69,6 +69,15 @@ def getEntryBody(user):
     db.close()
     return x
 
+def getEntryDate(user):
+    db = sqlite3.connect(DB_FILE, check_same_thread=False)
+    c = db.cursor()
+    c.execute("SELECT timeB FROM '{0}'".format(user))
+    x = c.fetchall()
+    db.commit()
+    db.close()
+    return x
+
 def updateEntry(user, Title, entry):
     db = sqlite3.connect(DB_FILE, check_same_thread=False)
     c = db.cursor()
@@ -90,16 +99,16 @@ def register(user, blog, pw, permission):
 
     c.execute("CREATE TABLE IF NOT EXISTS '{0}' (title TEXT, body TEXT, timeB TEXT)".format(user))
     # creates the user's blog specific database which holds the date of entry, username, title of entry, and content
-    
+
     c.execute("CREATE TABLE IF NOT EXISTS '{0}' (title TEXT, editedVersion TEXT, timeB TEXT)".format(user+"History"))
     # creates the user's blog edit history specific database which holds the username, content of edited version, title of entry, and date of edit
-    
+
     c.execute("INSERT INTO userDirectory VALUES('{0}','{1}', '{2}','{3}')".format(user,blog,pw,permission))
     # inputs username, blog name, password, and permission status into the user Directory database
-    
+
     c.execute("INSERT INTO '{0}' VALUES ('{1}', '{2}', '{3}')".format(user, "CREATED", "CREATED", datetime.utcnow()))
     # first entry of blogName: time is utc standard unless we have time to make user specifc; inserts all information given by user into fields
-    
+
     c.execute("INSERT INTO '{0}' VALUES ('{1}', '{2}', '{3}')".format(user+"History", "CREATED", "CREATED", datetime.utcnow()))
     # first entry of blogNameHistory: time is is utc standard unless we have time to make user specifc; inserts all information given by user into fields
 
@@ -115,7 +124,3 @@ def clear(user):
     c.execute("DELETE FROM {0} WHERE username = '{1}'".format(getBlog(user)+"History", user))
     db.commit()
     db.close()
-
-
-
-
