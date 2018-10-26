@@ -64,3 +64,10 @@ susanL -- 2018-10-25 13:39
 :: had team meeting about roles + current progress + updated team on db.py functionality
 :: working on createBlog functionality + formatting
 ==============================================================
+susanL -- 2018-10-26 18:53
+--------------------------------------------------------------
+:: finished display blog functionality for home page
+:: wrote crude user search functionality
+:: determined next steps are first to debug (make sure entries are visible after logout and log back in) and edit entry functionality
+:: added getEntryDate() in db.py and noticed bug in which multiple admins are created
+==============================================================
