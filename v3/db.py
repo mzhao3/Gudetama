@@ -55,7 +55,7 @@ def getEntryTitle(user):
     db = sqlite3.connect(DB_FILE, check_same_thread=False)
     c = db.cursor()
     c.execute("SELECT title FROM '{0}'".format(user))
-    x = c.fetchone()
+    x = c.fetchall()
     db.commit()
     db.close()
     return x
@@ -64,7 +64,7 @@ def getEntryBody(user):
     db = sqlite3.connect(DB_FILE, check_same_thread=False)
     c = db.cursor()
     c.execute("SELECT body FROM '{0}'".format(user))
-    x = c.fetchone()
+    x = c.fetchall()
     db.commit()
     db.close()
     return x
@@ -105,12 +105,6 @@ def register(user, blog, pw, permission):
 
     db.commit()
     db.close()
-
-register('Susan','sblog','pass','read')
-addEntry('Susan','title','body')
-addEntry('Susan','t','b')
-print(getEntryTitle('Susan'))
-print(getEntryBody('Susan'))
 
 
 def clear(user):
