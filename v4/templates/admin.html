@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ADMIN</title>
+</head>
+<body>
+  Admin status: Granted
+  <table border = 1>
+    <tr>
+      <th>Username</th>
+      <th>Blog</th>
+      <th>Last edit</th>
+      <th>Delete account?</th>
+    </tr>
+    {% for i in range(users | length) %}
+    <tr>
+      <td> {{ users[i] }} </td>
+      <td> {{ blogs[i] }} </td>
+      <td> {{ dates[i] }} </td>
+      <td>
+        <form action = "/delete" name = "main" method = "POST">
+          <button name = users[i] type = "submit">
+            Remove
+          </button>
+        </form>
+    </tr>
+    {% endfor %}
+  </table>
+
+</body>
+</html>

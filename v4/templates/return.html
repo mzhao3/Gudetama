@@ -15,10 +15,11 @@
     <br> <br>
 
     {% block error %}
-    {% if error %}
-    {% set msgs = get_flashed_messages() %}
-    {{ msgs[0] }}
-    {% endif %}
+        {% if error %}
+            <font color="red">{% set msgs = get_flashed_messages() %}
+              {{ msgs[0] }}
+	      </font>
+        {% endif %}
     {% endblock %}
 
     <br>
@@ -40,7 +41,7 @@
     {% for n in range(entries|length) %}
 
         {{ dates[n] }} <br>
-        <u><b> {{ titles[n] }} </b></u> 
+        <u><b> {{ titles[n] }} </b></u>
         <br>
         {{ entries[n] }}
         <br><br>

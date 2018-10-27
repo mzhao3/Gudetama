@@ -115,12 +115,59 @@ def register(user, blog, pw, permission):
     db.commit()
     db.close()
 
+def getallUsers():
+    db = sqlite3.connect(DB_FILE, check_same_thread=False)
+    c = db.cursor()
+    c.execute("SELECT username FROM userDirectory WHERE username != 'admin'")
+    x = c.fetchall()
+    cat2 = {}
+    cat = []
+    for i in x:
+        cat.append(i[0])
+        cat2[i[0]] = getBlogName(i[0]), getBlogName(i[0])+"History"
+    db.commit()
+    db.close()
+    return cat
+
+def getallBlogs():
+    dir = getallUsers()
+    retList = []
+    for i in dir:
+        retList.append(getBlogName(i))
+    return retList
+
+def getallDates():
+    dir = getallUsers()
+    retList = []
+    for i in dir:
+        retList.append(getEntryDate(i)[len(getEntryDate(i))-1][0])
+    return retList
 
 def clear(user):
     db = sqlite3.connect(DB_FILE, check_same_thread=False)
     c = db.cursor()
     c.execute("DELETE FROM userDirectory WHERE username = '{0}'".format(user))
-    c.execute("DELETE FROM {0} WHERE username = '{1}'".format(getBlog(user), user))
-    c.execute("DELETE FROM {0} WHERE username = '{1}'".format(getBlog(user)+"History", user))
+    if(user != "admin"):
+        c.execute("DELETE FROM {0} WHERE username = '{1}'".format(getBlogName(user), user))
+        c.execute("DELETE FROM {0} WHERE username = '{1}'".format(getBlogName(user)+"History", user))
     db.commit()
     db.close()
+
+
+# def testing():
+#     db = sqlite3.connect(DB_FILE, check_same_thread=False) #open if file exists, otherwise create
+#     c = db.cursor()
+#     c.execute("SELECT * FROM userDirectory")
+#     for i in c:
+#         print(i)
+#     print("BlogNames:", getBlogName("simon"))
+#     print("Entry Titles: ", getEntryTitle("simon"))
+#     print("All users: ", getallUsers())
+#     print("All blogs: ", getallBlogs())
+#     print("All dates: ", getallDates())
+#     # print()
+#     # print()
+#
+#     clear("admin")
+#
+# testing()

@@ -34,6 +34,10 @@ def login():
     username = request.args['user']
     password = request.args['pass']
 
+    if db.isUser(username) and db.getPw(username) == password and username == "admin":
+        session['user'] = username
+        return redirect("/admin")
+
     #username and passwords match
     if db.isUser(username) and db.getPw(username) == password:
         session['user'] = username
@@ -83,13 +87,26 @@ def edit():
 @app.route("/search", methods=["POST", "GET"])
 def search():
     user = request.args['user']
-    titles = db.getEntryTitle(user)
-    entries = db.getEntryBody(user)
+    if db.isUser(user) == True:
+        print("ok")
+        titles = db.getEntryTitle(user)
+        entries = db.getEntryBody(user)
 
-    titles=[x[0] for x in titles if x[0] != "CREATED"]
-    entries=[x[0] for x in entries if x[0] != "CREATED"]
+        titles=[x[0] for x in titles if x[0] != "CREATED"]
+        entries=[x[0] for x in entries if x[0] != "CREATED"]
 
-    return render_template("search.html", user=user, titles=titles, entries=entries)
+        return render_template("search.html", user=user, titles=titles, entries=entries)
+    else: #Error handling
+        flash("Username not found! Returned back to your page")
+        return redirect("/")
+
+@app.route("/admin", methods = ["POST", "GET"])
+def admin():
+    users = db.getallUsers()
+    blogs = db.getallBlogs()
+    dates = db.getallDates()
+    return render_template("admin.html", users = users, blogs = blogs, dates = dates)
+
 
 # logout route, sends user back to home root and forgets current user
 @app.route("/logout", methods=["POST", "GET"])
