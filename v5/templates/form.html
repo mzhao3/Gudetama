@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    WELCOME TO GUDETAMA, YOUR FRIENDLY NEIGHBORHOOD BLOG SITE.
+    <title> LOG IN </title>
+  </head>
+  <body>
+    {% block error %}
+        {% if error %}
+            <font color="red">{% set msgs = get_flashed_messages() %}
+              {{ msgs[0] }}
+	      </font>
+        {% endif %}
+    {% endblock %}
+      
+    {% block success %}
+        {% if success %}
+            <font color="green">{% set msgs = get_flashed_messages() %}
+              {{ msgs[0] }}
+	      </font>
+        {% endif %}
+    {% endblock %}
+   
+
+    {% block content %}
+    <br>
+    <br>
+    <br>
+    <b>LOGIN</b>
+    <br>
+    <br>
+
+    <form action="/auth" name="main" method="GET" placeholder="Username">
+      <input type="text" name="user" placeholder = 'username'>
+      <br>
+      <input type="text" name="pass" placeholder = 'password'>
+      <br>
+      <br>
+      <button name="enter:" type="submit">
+      Submit
+      </button>
+    </form>
+
+    <br>
+    <br>
+    <br>
+
+    <b>MAKE AN ACCOUNT</b>
+    <br>
+    <br>
+
+    <form action= "/register" method="GET">
+      <input type = "text" name = "Username" placeholder = 'Username'><br>
+      <input type = "text" name = "Password" placeholder = 'password'><br>
+      <input type = "text" name = "Blog" placeholder = 'blog title'><br>
+      <br>
+      <input type = "submit" value="Register">
+      </form>
+
+    {% endblock %}
+  </body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> HOME </title>
+  </head>
+  <body>
+
+    <form action="/search" name="main" method="GET" placeholder="Username">
+      <input type="text" name="user" placeholder = 'username'>
+      <button name="enter:" type="submit">
+      Submit
+      </button>
+    </form>
+
+    <br> <br>
+
+    {% block error %}
+        {% if error %}
+            <font color="red">{% set msgs = get_flashed_messages() %}
+              {{ msgs[0] }}
+	      </font>
+        {% endif %}
+    {% endblock %}
+
+    <br>
+    welcome back <b>{{ user }}</b>!
+
+    <br>
+    <br>
+    you're currently logged in
+    <br>
+    <br>
+
+    Create an entry <a href="/createBlog">here</a>
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+    {% for n in range(entries|length) %}
+
+        {{ dates[n] }} <br>
+        <u><b> {{ titles[n] }} </b></u>
+        <br>
+        {{ entries[n] }}
+        <br><br>
+
+    {% endfor %}
+
+    <form action="/logout" name="main" method="POST">
+      <button name="enter" type="submit">
+        LOG OUT
+      </button>
+    </form>
+  </body>
+</html>
