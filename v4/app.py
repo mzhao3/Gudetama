@@ -25,7 +25,7 @@ def home():
          entries=[x[0] for x in entries if x[0] != "CREATED"]
          dates=[x[0] for x in dates]
 
-         return render_template('return.html', user=session['user'], titles = titles, entries = entries, dates = dates)
+         return render_template('return.html', user=session['user'], titles=titles, entries=entries, dates=dates)
      return render_template('form.html')
 
 #reading in user and password, checking to see if it is valid or not
@@ -41,7 +41,7 @@ def login():
     #username and passwords match
     if db.isUser(username) and db.getPw(username) == password:
         session['user'] = username
-        return render_template('return.html', user=username)
+        return redirect('/')
 
     #username doesn't match
     elif db.isUser(username) == False:
@@ -105,7 +105,7 @@ def admin():
     users = db.getallUsers()
     blogs = db.getallBlogs()
     dates = db.getallDates()
-    return render_template("admin.html", users = users, blogs = blogs, dates = dates)
+    return render_template("admin.html", users=users, blogs=blogs, dates=dates)
 
 
 # logout route, sends user back to home root and forgets current user
