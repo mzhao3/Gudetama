@@ -107,6 +107,12 @@ def admin():
     dates = db.getallDates()
     return render_template("admin.html", users=users, blogs=blogs, dates=dates)
 
+@app.route("/delete", methods = ["POST", "GET"])
+def delete():
+    user = request.args['user']
+    print(user)
+    db.clear(user)
+    return redirect(url_for("logout"))
 
 # logout route, sends user back to home root and forgets current user
 @app.route("/logout", methods=["POST", "GET"])

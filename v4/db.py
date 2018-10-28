@@ -148,8 +148,8 @@ def clear(user):
     c = db.cursor()
     c.execute("DELETE FROM userDirectory WHERE username = '{0}'".format(user))
     if(user != "admin"):
-        c.execute("DELETE FROM {0} WHERE username = '{1}'".format(getBlogName(user), user))
-        c.execute("DELETE FROM {0} WHERE username = '{1}'".format(getBlogName(user)+"History", user))
+        c.execute("DELETE FROM {0}".format(user, user))
+        c.execute("DELETE FROM {0}".format(user+"History", user))
     db.commit()
     db.close()
 
@@ -157,6 +157,7 @@ def clear(user):
 # def testing():
 #     db = sqlite3.connect(DB_FILE, check_same_thread=False) #open if file exists, otherwise create
 #     c = db.cursor()
+#     register("simon", "hi", "h", "RW")
 #     c.execute("SELECT * FROM userDirectory")
 #     for i in c:
 #         print(i)
@@ -167,7 +168,7 @@ def clear(user):
 #     print("All dates: ", getallDates())
 #     # print()
 #     # print()
-#
+#     clear("simon")
 #     clear("admin")
 #
 # testing()

@@ -10,22 +10,20 @@
       <th>Username</th>
       <th>Blog</th>
       <th>Last edit</th>
-      <th>Delete account?</th>
     </tr>
     {% for i in range(users | length) %}
     <tr>
       <td> {{ users[i] }} </td>
       <td> {{ blogs[i] }} </td>
       <td> {{ dates[i] }} </td>
-      <td>
-        <form action = "/delete" name = "main" method = "POST">
-          <button name = users[i] type = "submit">
-            Remove
-          </button>
-        </form>
     </tr>
     {% endfor %}
   </table>
+  <form action = "/delete">
+    Remove user: <input type = "text" name = "user"><br>
+    <input type = "submit" value = "submit and logout">
+  </form>
+
 
 </body>
 </html>
