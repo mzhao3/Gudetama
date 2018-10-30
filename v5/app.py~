@@ -10,7 +10,7 @@ from os import urandom
 import db
 
 app = Flask(__name__)
-#app.secret_key = urandom(32)
+app.secret_key = urandom(32)
 session = {}
 
 #home root
@@ -35,7 +35,7 @@ def login():
     password = request.args['pass']
 
     if db.isUser(username) and db.getPw(username) == password and username == "admin":
-        session['user'] = 'admin'
+        session['user'] = username
         return redirect("/admin")
 
     #username and passwords match
