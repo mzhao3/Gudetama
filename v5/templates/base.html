@@ -3,21 +3,25 @@
 <!DOCTYPE html>
 <html>
   <head>
-  
+    {% block title %}
+  <title> Information </title>
+      {% endblock %}
+
     {% block head %}
-        <title> Information </title>
+
+        <link rel="stylesheet" type = "text/css" href="{{ url_for('static', filename='main.css') }}">
     {% endblock %}
-    
+
   </head>
   <body>
 
-    {# we will specify the error in form.html after the user inputs info #} 
+    {# we will specify the error in form.html after the user inputs info #}
     {% block error%} {% endblock  %}
     {% block success %} {% endblock %}
-    
+
     {% block content  %}
         check again
     {% endblock %}
-    
+
   </body>
 </html>

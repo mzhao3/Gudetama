@@ -1,0 +1,97 @@
+html 	{
+	cursor: url("/static/cursor.cur"), progress !important;
+  min-height: 100%;
+  margin: 0;
+  overflow-y: scroll;
+
+}
+
+html, body {
+  height: 100%;
+  overflow-y: scroll;
+
+
+}
+.page {
+  background-image:url('gudetama1.png');
+  background-repeat: repeat-x;
+  background-size: 100px 100px;
+  background-position: bottom;
+  min-height: 100%;
+}
+
+.title {
+  width: 300 px;
+  height: 200 px;
+  text-align: center;
+}
+mark.yellow {
+  color:#FFDC6E;
+  background: none;
+  size: 16px;
+  text-shadow: -1px -1px 0 #000,
+		            1px -1px 0 #000,
+		           -1px 1px 0 #000,
+		            1px 1px 0 #000;
+}
+.login {
+  text-align: center;
+}
+
+.create {
+  text-align: center;
+}
+
+.search {
+  text-align: right;
+}
+
+.greeting {
+  text-align: center;
+  font-size: 19px;
+}
+
+.home {
+  background-image: url("eggsistential.jpg");
+  background-repeat: no-repeat;
+  background-size: 250px 250px;
+  background-position: top left;
+}
+.posts {
+  height: 130px;
+  margin-bottom: 20px;
+  background-image:url('white.png');
+  background-repeat: no-repeat;
+  background-size: 500px 130px;
+  padding-left: 95px;
+
+}
+
+.text{
+  height: 84px;
+}
+
+.new {
+  text-align:center;
+}
+
+.newblog {
+  background-color: #FFDC6E;
+  height: 100%;
+  margin: 0px;
+  padding: 25px;
+}
+
+.titler {
+  text-align: center;
+  vertical-align: middle;
+  height: 250px;
+  background-image: url('gudechop.png');
+  background-repeat: no-repeat;
+  background-size: 250px 250px;
+  background-position: top right;
+}
+h3 {
+  color: #65524D;
+  font-size: 19px;
+}

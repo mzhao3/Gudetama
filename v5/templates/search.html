@@ -1,21 +1,35 @@
+{% extends "base.html" %}
+
 <!DOCTYPE html>
 <html>
   <head>
+    {% block head %}
+
+      {% block title %}
     <title> SEARCH RESULTS </title>
+    {% endblock %}
+      <link rel=stylesheet type = text/css href="{{ url_for('static', filename='main.css') }}">
+{% endblock %}
   </head>
   <body>
-
-    <b>THIS IS THE BLOG OF {{ user }}</b>
-
+    {% block content %}
+    <div class = "titler">
+      <br><br>
+    <h3> <b>THIS IS THE BLOG OF <br> <br>{{ user }}</b> </h3>
+  </div>
     <br> <br>
 
     {% for n in range(entries|length) %}
+    <div class = "posts">
 
-        <u> <b> {{ titles[n] }} </b> </u> 
+    <br>
+            <div class = "text">
+        <u> <b> {{ titles[n] }} </b> </u>
         <br>
         {{ entries[n] }}
         <br> <br>
-
+</div>
+</div>
     {% endfor %}
 
     <br> <br>
@@ -26,6 +40,6 @@
         LOG OUT
       </button>
     </form>
-
+    {% endblock %}
   </body>
 </html>

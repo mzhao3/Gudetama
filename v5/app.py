@@ -10,7 +10,7 @@ from os import urandom
 import db
 
 app = Flask(__name__)
-#app.secret_key = urandom(32)
+app.secret_key = urandom(32)
 session = {}
 
 #home root
